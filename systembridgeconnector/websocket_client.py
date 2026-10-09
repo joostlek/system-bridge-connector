@@ -21,6 +21,7 @@ from .exceptions import (
 )
 from .models.command_execute import ExecuteRequest
 from .models.command_result import ExecuteResult
+from .models.discord_control import DiscordControl
 from .models.keyboard_key import KeyboardKey
 from .models.keyboard_text import KeyboardText
 from .models.media_control import MediaControl
@@ -349,6 +350,21 @@ class WebSocketClient(Base):
             request_id,
             asdict(model),
             wait_for_response=False,
+        )
+
+    async def discord_control(
+        self,
+        model: DiscordControl,
+        request_id: str | None = None,
+    ) -> Response:
+        """Discord control."""
+        self._logger.info("Discord control: %s", model)
+        return await self.send_message(
+            EventType.DISCORD_CONTROL,
+            request_id,
+            asdict(model),
+            wait_for_response=True,
+            response_type=EventType.DISCORD_CONTROLLED,
         )
 
     async def send_notification(
