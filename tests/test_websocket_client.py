@@ -19,6 +19,7 @@ from systembridgeconnector.exceptions import (
 )
 from systembridgeconnector.models.command_execute import ExecuteRequest
 from systembridgeconnector.models.command_result import ExecuteResult
+from systembridgeconnector.models.discord_control import DiscordAction, DiscordControl
 from systembridgeconnector.models.keyboard_key import KeyboardKey
 from systembridgeconnector.models.keyboard_text import KeyboardText
 from systembridgeconnector.models.media_control import MediaControl
@@ -336,6 +337,21 @@ async def test_media_control(
     assert (
         await mock_websocket_client_connected.media_control(
             MediaControl(action="play"),
+            request_id=REQUEST_ID,
+        )
+        == snapshot
+    )
+
+
+@pytest.mark.asyncio
+async def test_discord_control(
+    snapshot: SnapshotAssertion,
+    mock_websocket_client_listening: WebSocketClient,
+):
+    """Test the websocket client."""
+    assert (
+        await mock_websocket_client_listening.discord_control(
+            DiscordControl(action=DiscordAction.TOGGLE_MUTE),
             request_id=REQUEST_ID,
         )
         == snapshot

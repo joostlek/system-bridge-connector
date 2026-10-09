@@ -21,6 +21,19 @@
     type='N/A',
   )
 # ---
+# name: test_discord_control
+  Response(
+    data=dict({
+      'action': 'TOGGLE_MUTE',
+      'value': None,
+    }),
+    id='test',
+    message='Discord controlled',
+    module=None,
+    subtype=None,
+    type='DISCORD_CONTROLLED',
+  )
+# ---
 # name: test_execute_command
   ExecuteResult(
     commandID='test-command',
@@ -68,6 +81,7 @@
   ModulesData(
     battery=None,
     cpu=None,
+    discord=None,
     disks=None,
     displays=None,
     gpus=None,
@@ -345,6 +359,7 @@
   ModulesData(
     battery=None,
     cpu=None,
+    discord=None,
     disks=None,
     displays=None,
     gpus=None,

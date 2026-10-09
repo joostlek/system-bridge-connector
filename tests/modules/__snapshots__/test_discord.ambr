@@ -1,0 +1,11 @@
+# serializer version: 1
+# name: test_discord
+  Discord(
+    authenticated=True,
+    connected=True,
+    deaf=False,
+    input_volume=80,
+    mute=False,
+    output_volume=100,
+  )
+# ---
